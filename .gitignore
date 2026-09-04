@@ -1,0 +1,42 @@
+# 대용량 작업물 — 레포에 넣지 않는다
+work/audio_libs/
+work/audio_transcript/
+work/ppt/
+work/rendered/
+work/html-deck/
+work/html-deck-redesign/
+work/images/raw/
+work/design-canvas/_archive/
+tmp/
+_workspace/
+
+# 빌드 산출물 (CI 가 만든다)
+outputs/
+deck-template/deck.html
+deck-template/notes.html
+work/design-canvas/*.dc.html
+work/design-canvas/5points-deck-redesign.html
+work/design-canvas/copy-dump.txt
+work/design-canvas/canvas.json
+deck-template/canvas.json
+deck-template/*.dc.html
+
+# 폰트 원본 — CI 가 Google Fonts 에서 받는다 (36MB)
+**/fonts/*.ttf
+# 서브셋 결과물도 생성물
+**/fonts/*.woff2
+**/fonts/charset.txt
+
+# 작업 부산물
+**/preview/
+**/shots/
+**/*.png
+!work/images/web/*.png
+.DS_Store
+Thumbs.db
+node_modules/
+
+# 브레인스토밍 작업 부산물
+.superpowers/
+work/design-canvas/_copy-dump.txt
+work/design-canvas/copy-dump.txt

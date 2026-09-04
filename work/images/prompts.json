@@ -1,0 +1,94 @@
+{
+  "t_person": {
+    "note": "룩 테스트 · 사람 (표지/체크인용)",
+    "prompt": "Dimly lit bar counter at night. A man in a dark shirt seen only from behind, sitting on a stool at the far right third of the frame, shoulders and back of the head, face never visible. Out-of-focus warm amber pendant lamps and bottles behind the bar. The left two thirds of the frame are empty and almost completely dark."
+  },
+  "t_go": {
+    "note": "룩 테스트 · 사물 (판세론)",
+    "prompt": "Close-up of black and white go stones scattered on a worn wooden goban, seen from a low angle. A single warm lamp from the side, deep shadows, only a few stones catch the light, the rest of the board sinks into darkness. Shallow depth of field, the far stones blurred."
+  },
+  "t_alley": {
+    "note": "룩 테스트 · 공간 (이태원 사례)",
+    "prompt": "Narrow back alley in Itaewon, Seoul, late at night. Wet pavement reflecting a small warm glow from a bar doorway on the left. Steep stairs, old brick, tangled wires above. No people, or only one distant blurred silhouette far down the alley. Most of the frame is dark."
+  },
+  "s02_empty_glasses": {
+    "note": "02 왜 결과가 없을까 · 사물",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Two empty champagne glasses and a lipstick-marked cocktail glass left on a glossy dark bar table after everyone has left, a crumpled napkin, condensation rings. Blurred pink and amber neon behind. Glasses in the lower right, the rest of the frame dark reflective table."
+  },
+  "s06_cleared_table": {
+    "note": "06 그대로 끝난다 · 사물",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A cleared lounge table late at night seen from above at an angle: a folded receipt, a phone face down, a single earring left behind, water rings where glasses stood. Blurred neon from the street through a window. Most of the frame in shadow."
+  },
+  "s07_over_shoulder": {
+    "note": "07 체크인 01 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Over-the-shoulder shot from behind a man at a bar table, his shoulder blurred in the lower left corner. Across the table sits a beautiful, stylish young Korean woman in a black dress leaning on her hand; the frame cuts across her face just above the lips so only her lips, jawline, hair, neck and shoulders are visible, her eyes never in frame. Warm pendant lights and bottles blurred behind her."
+  },
+  "s10_profile": {
+    "note": "10 부동심론 표지 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Side profile of a beautiful, stylish young Korean woman sitting very still at a glamorous bar, lit by one warm backlight so her outline glows; the frame cuts across her face just above the lips so only her lips, jawline, hair, neck and shoulders are visible, her eyes never in frame. She is on the far right third of the frame, holding a glass. The left two thirds of the frame fall into dark bokeh."
+  },
+  "s15_hand_glass": {
+    "note": "15 체크인 02 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Close-up of a woman's hand with dark red nails resting on a champagne coupe on a black marble bar, and just behind it a man's hand around a whisky glass, not touching. Warm light on the rims. Everything else dark bokeh. No faces."
+  },
+  "s22_two_backs": {
+    "note": "22 체크인 03 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A man and a beautiful, stylish young Korean woman in a slip dress sitting side by side at a bar, seen from directly behind, both turned slightly away from each other with a gap between them. Backs, hair and bare shoulders only, no faces. A wall of blurred neon bottles ahead. Subjects on the right half."
+  },
+  "s27_tilted_glass": {
+    "note": "27 환류론 표지 · 사물",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A tilted glass of whisky on a black table, the amber liquid caught mid-swirl and glowing from a warm side light, magenta neon reflected in the glass. The glass in the right third of the frame, the rest black. Shallow depth of field."
+  },
+  "s30_distance": {
+    "note": "30 체크인 04 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A man and a beautiful, stylish young Korean woman at opposite ends of a long glossy bar counter, both seen from behind, far apart, a wide empty stretch of counter between them reflecting pink and amber neon. Faces never visible."
+  },
+  "s31_four_stools": {
+    "note": "31 합진론 표지 · 사물",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Four empty velvet bar stools in a row along a glossy dark counter, seen from a low angle down the line, the nearest sharp and the far ones fading into neon bokeh. One warm pendant lamp above. No people."
+  },
+  "s35_two_men": {
+    "note": "35 체크인 05 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Two men sitting next to each other at a bar, seen from directly behind, leaning slightly toward each other as if talking, backs and heads only. Further down the bar, out of focus, two women in dresses. Warm blurred bar lights ahead. Subjects on the left half."
+  },
+  "s44_hand_stone": {
+    "note": "44 정리 · 사물",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A man's hand placing a single black go stone on a worn wooden goban, seen close from a low side angle. Only the hand and a few stones lit by one warm lamp, the board fades into darkness with a faint magenta reflection at the edge. Shallow depth of field."
+  },
+  "s45_facing_silhouettes": {
+    "note": "45 담판론 예고 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A man and a beautiful, stylish young Korean woman sitting across a small dark table from each other, seen from the side, both as strong silhouettes against a warm neon-lit wall, leaning in. No facial features on either. Table and silhouettes lower right, upper left empty and dark."
+  },
+  "s48_alone_spotlight": {
+    "note": "48 자기소개 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A single man standing alone in an empty dark lounge under one warm downlight, seen from behind and slightly above, his shadow long on the glossy floor, faint neon on the far wall. No face. He is small in the frame, lower right, surrounded by darkness."
+  },
+  "s50_three_silhouettes": {
+    "note": "50 트레이너 유혹 · 사람",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Three people at a glamorous bar seen entirely from behind: two men standing close together on the left in dark suits, and a woman seated at the counter on the right in an elegant evening gown, a little apart from them. All three shown only from behind and the side, no faces, no visible skin beyond hands and hair. Warm and pink blurred lights ahead."
+  },
+  "t_woman_bar": {
+    "note": "룩 테스트 v2 · 사람 (표지/체크인)",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "A beautiful, stylish young Korean woman in a black slip dress at a glamorous cocktail bar, seen in three-quarter view from slightly above and behind. The top of the frame cuts across her face just above the lips, so only her lips, jawline, long dark hair, neck, collarbones and shoulders are visible; her eyes are never in frame. She holds a glass of champagne. Behind her, blurred warm pendant lights and mirrored bottles. She is placed on the right third of the frame; the left side falls into dark bokeh."
+  },
+  "t_itaewon_neon": {
+    "note": "룩 테스트 v2 · 공간 (이태원 사례)",
+    "tail": " Shot on 35mm film at night, vivid neon and warm tungsten colors against deep black shadows, glossy wet reflections, bokeh, visible film grain, slight lens softness, off-center candid framing, editorial fashion-photo feel, not symmetrical, no text, no logos, no readable signage, no watermark.",
+    "prompt": "Itaewon, Seoul, nightlife street on a Friday night: dense glowing neon signs in pink, red and amber, crowds blurred in motion, taxis passing with light streaks, wet asphalt reflecting everything. In the foreground on the left, a beautiful stylish young Korean woman in a fitted dress and heels walks toward the camera, the frame cutting her face just above the lips so only lips, chin, hair and body are visible. Shallow depth of field, she is sharp and the street is a wall of bokeh."
+  }
+}
