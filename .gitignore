@@ -40,3 +40,6 @@ node_modules/
 .superpowers/
 work/design-canvas/_copy-dump.txt
 work/design-canvas/copy-dump.txt
+
+# 빈 fonts 디렉터리는 유지 (CI 가 여기에 TTF 를 받는다)
+!**/fonts/.gitkeep

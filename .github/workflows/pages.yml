@@ -38,9 +38,9 @@ jobs:
 
       # 원본 TTF 는 36MB라 레포에 넣지 않는다. Google Fonts 에서 받아 쓴다.
       - name: 원본 폰트 내려받기
-        working-directory: work/design-canvas/fonts
         run: |
           set -euo pipefail
+          mkdir -p work/design-canvas/fonts && cd work/design-canvas/fonts
           base=https://github.com/google/fonts/raw/main/ofl
           curl -fsSL -o EastSeaDokdo.ttf "$base/eastseadokdo/EastSeaDokdo-Regular.ttf"
           curl -fsSL -o NotoSansKR.ttf   "$base/notosanskr/NotoSansKR%5Bwght%5D.ttf"
