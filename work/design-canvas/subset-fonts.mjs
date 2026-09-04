@@ -23,6 +23,16 @@ for (const f of fs.readdirSync('.').filter((x) => x.endsWith('.dc.html'))) {
 }
 text += '발표자 노트 전체 보기 닫기 이 장에는 노트가 없습니다 발표 단축키 슬라이드 이동 처음과 마지막 전체 화면 패널 닫기';
 
+// 강의 대본(script.mjs)도 같은 폰트로 인쇄하므로 글자를 합친다
+try {
+  const { SCRIPT } = await import('./script.mjs');
+  text += ' 강의 대본 질문개 회색 상자는 청중에게 던지는 질문입니다 슬라이드 번호는 오른쪽에 있습니다 ';
+  for (const sec of SCRIPT) {
+    text += sec.part + sec.title + sec.s;
+    for (const b of sec.body) text += (typeof b === 'string' ? b : b.q);
+  }
+} catch { /* 대본이 없으면 건너뛴다 */ }
+
 const chars = [...new Set(text.split(''))].filter((c) => c.trim() && c.charCodeAt(0) > 31).sort();
 fs.writeFileSync('fonts/charset.txt', chars.join(''));
 

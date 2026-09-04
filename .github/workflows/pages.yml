@@ -60,6 +60,7 @@ jobs:
         run: |
           node build-deck.mjs
           node build-notes.mjs
+          node build-script.mjs
 
       - name: 사이트 조립
         run: |
@@ -69,8 +70,9 @@ jobs:
           cp site/robots.txt _site/robots.txt
           cp outputs/5points_deck.html  _site/deck.html
           cp outputs/5points_notes.html _site/notes.html
+          cp outputs/5points_script.html _site/script.html
           # 검색엔진 색인 차단 — 링크로만 공유한다
-          for f in _site/deck.html _site/notes.html; do
+          for f in _site/deck.html _site/notes.html _site/script.html; do
             sed -i 's|<meta charset="utf-8">|<meta charset="utf-8"><meta name="robots" content="noindex, nofollow">|' "$f"
           done
           ls -la _site
