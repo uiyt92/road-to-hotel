@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const TOTAL = 64;
+const TOTAL = fs.readdirSync('.').filter((f) => /^(Main|S\d+)\.dc\.html$/.test(f)).length;  // 아트보드 개수에서 읽는다
 const OUT = path.resolve('../../outputs/5points_deck.html');
 const IMGDIR = '../images/web';
 
@@ -44,7 +44,7 @@ for (let i = 1; i <= TOTAL; i++) {
 
 const css = `${fontCss}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:"Noto Sans KR",system-ui,sans-serif}
+html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:"Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
 #deck{position:fixed;inset:0;overflow:hidden}
 .slide{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform:translate(-50%,-50%) scale(var(--k,1));transform-origin:center;opacity:0;pointer-events:none;transition:opacity .22s ease}
 .slide.on{opacity:1;pointer-events:auto;z-index:2}
@@ -67,7 +67,7 @@ body.wake .ui,.ui:focus-within{opacity:1}
 .nb{max-width:880px;margin:26px auto 0;background:#141311;padding:26px;font-size:18px;line-height:1.75;color:#e6dfd0}
 .hg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;max-width:900px;margin:26px auto 0}
 .hi{background:#141311;padding:17px}.hi b{color:#d9a441;font-size:17px}.hi span{display:block;color:#b9b2a3;margin-top:6px;font-size:13px}
-@media print{@page{size:16in 9in;margin:0}html,body{overflow:visible;height:auto}#deck{position:static}.slide{position:relative;left:auto;top:auto;transform:none;opacity:1!important;page-break-after:always;break-after:page}.ui,.bar,.zone,.ov{display:none!important}}`;
+@media print{@page{size:1600px 900px;margin:0}html,body{overflow:visible;height:auto}#deck{position:static}.slide{position:relative;left:auto;top:auto;transform:none;opacity:1!important;page-break-after:always;break-after:page}.ui,.bar,.zone,.ov{display:none!important}}`;
 
 const js = `(function(){
 var S=[].slice.call(document.querySelectorAll('.slide')),i=0,N=S.length;

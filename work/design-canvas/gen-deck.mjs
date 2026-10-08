@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import { NOTES } from './notes.mjs';
 
-const TOTAL = 64;
+const TOTAL = 68;
 const FONTS = "@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap');";
 const INK = '#f3eee4', MUTED = '#b9b2a3', DIM = '#8f887a', GOLD = '#d9a441', RED = '#d8412f', BG = '#050403';
 const SANS = "font-family: 'Noto Sans KR', sans-serif;";
@@ -30,7 +30,7 @@ const wrap = (body) => `<!doctype html>
 <helmet>
   <style>
     ${FONTS}
-    body { margin: 0; background: ${BG}; }
+    body { margin: 0; background: ${BG}; word-break: keep-all; }
     a { color: ${GOLD}; } a:hover { color: #f0c96a; }
   </style>
 </helmet>
@@ -281,6 +281,42 @@ T.versus = (s, n) => wrap(`
   </div>
   ${concl(s.concl)}`);
 
+// 사다리 — 같은 상황에서 갈리는 두 갈래를 나란히 내려 비교한다
+const rung = (r, kc) => `<div style="border: 1px solid ${kc === RED ? 'rgba(216,65,47,0.34)' : 'rgba(217,164,65,0.34)'}; background: ${kc === RED ? 'rgba(216,65,47,0.07)' : 'rgba(217,164,65,0.07)'}; padding: 10px 20px; text-align: center;">
+  <strong style="display: block; font-size: 23px; font-weight: 700; line-height: 1.3; color: ${r.hi ? kc : INK};">${r.t}</strong>
+  ${r.d ? `<span style="display: block; margin-top: 4px; font-size: 15px; line-height: 1.45; color: ${MUTED};">${r.d}</span>` : ''}</div>`;
+const drop = () => `<svg width="14" height="22" viewBox="0 0 14 22" style="display: block; margin: 3px auto;"><path d="M7 0 V16 M2 11 L7 17 L12 11" stroke="${DIM}" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+const rail2 = (c, kc) => `<div style="flex: 1;">
+  <div style="text-align: center; padding-bottom: 9px; border-bottom: 1px solid #3a3323; margin-bottom: 11px;"><span style="font-size: 14px; letter-spacing: 0.22em; color: ${kc};">${c.k}</span></div>
+  ${c.rows.map((r, i) => (i ? drop() : '') + rung(r, kc)).join('')}</div>`;
+T.ladder = (s, n) => wrap(`
+  ${grain()}
+  ${chrome(s, n)}
+  ${dhead(s)}
+  <div style="position: absolute; left: 96px; right: 96px; top: ${s.rowTop || 358}px; display: flex; gap: 72px; ${SANS}">
+    ${rail2(s.left, RED)}${rail2(s.right, GOLD)}
+  </div>
+  ${concl(s.concl)}`);
+
+// 깔때기 — 두 전제가 세 갈래로 퍼졌다가 하나의 판단으로 모인다
+const band = (b, big) => `<div style="border: 1px solid #3a3323; background: rgba(217,164,65,0.05); padding: ${big ? 9 : 7}px 24px; text-align: center;">
+  ${b.k ? `<span style="display: block; font-size: 13px; letter-spacing: 0.24em; color: ${GOLD};">${b.k}</span>` : ''}
+  <strong style="display: block; margin-top: 3px; font-size: ${big ? 26 : 23}px; font-weight: 700; color: ${INK};">${b.t}</strong>
+  ${b.d ? `<span style="display: block; margin-top: 3px; font-size: 15px; color: ${MUTED};">${b.d}</span>` : ''}</div>`;
+T.funnel = (s, n) => wrap(`
+  ${grain()}
+  ${chrome(s, n)}
+  ${dhead(s)}
+  <div style="position: absolute; left: 240px; right: 240px; top: ${s.rowTop || 342}px; ${SANS}">
+    ${band(s.top1)}${drop()}${band(s.top2)}${drop()}
+    <div style="display: flex; gap: 22px;">${s.axes.map((a) => `<div style="flex: 1; border: 1px solid #3a3323; padding: 8px 12px; text-align: center;">
+      <strong style="display: block; ${BRUSH} font-size: 32px; color: ${INK}; line-height: 1;">${a.t}</strong>
+      <span style="display: block; margin-top: 6px; font-size: 16px; font-weight: 700; color: ${INK};">${a.d}</span>
+      <span style="display: block; margin-top: 2px; font-size: 14px; color: ${MUTED};">${a.s}</span></div>`).join('')}</div>
+    ${drop()}${band(s.out, true)}
+  </div>
+  ${concl(s.concl)}`);
+
 // 대사 — 실전에서 그대로 말하는 문장
 T.script = (s, n) => wrap(`
   ${grain()}
@@ -309,11 +345,13 @@ const S = [
  { type:'theory', top:'심법 · 一', tag:'심법 01', h:'주인 의식', hSize:150, sub:'자리의 주인이 된 것처럼 행동하라 — 상대 비위를 맞추는 게 아니라, 네 명이 더 편하게 놀 수 있는 자리를 만드는 것이다', items:[{t:'먼저 본다',d:'물컵, 자리, 말의 온도처럼 지금 불편한 데가 없는지 살핀다.'},{t:'가볍게 챙긴다',d:'챙겨준 뒤 대가를 바라지 않는다. 바라는 순간 거래가 된다.'},{t:'흐름을 넓힌다',d:'내 팟만 챙기지 말고, 빠진 사람까지 다시 대화 안으로 넣는다.'}], callout:'주인은 을이 아니라<br>흐름을 관리하는 사람' },
  { type:'theory', top:'심법 · 二', tag:'심법 02', h:'One for All,<br>Not All for One', hSize:104, listTop:470, sub:'내 팟보다 흐름 전체를 본다 — 한 명만 달리면 나머지 한 명이 빠지고, 한 명이 빠지면 흐름은 오래 못 간다', items:[{t:'윙을 올려준다',d:'내 윙이 좋게 보일 이유를 대신 만들어주면 팀 전체 체급이 올라간다.'},{t:'쏠림을 푼다',d:'한 사람에게 질문과 관심이 몰리면 자리나 질문을 섞어 균형을 만든다.'},{t:'경쟁하지 않는다',d:'내 파트너 싸움으로 만들지 말고, 네 명이 같이 살아 있는지를 본다.'}], callout:'내가 돋보이는 것보다<br>네 명의 흐름이 살아 있는 게 먼저' },
  { type:'theory', top:'심법 · 三', tag:'심법 03', h:'자기 확신', hSize:150, sub:'우리는 누구보다 잘나고 매력적인 남성이다 — 상대 반응에 나까지 흔들리면 흐름을 읽는 게 아니라 끌려다니게 된다', items:[{t:'리액션에 안 끌려간다',d:'웃음 하나, 무표정 하나로 바로 결론 내리지 않는다.'},{t:'어필을 줄인다',d:'잘 보이려고 말이 많아질수록 흐름은 더 기운다.'},{t:'여유를 남긴다',d:'상대가 선택할 공간을 남겨야 긴장 대신 호기심이 생긴다.'}], callout:'상대를 깎는 태도가 아니라<br>내가 흔들리지 않는 태도' },
+  { type:'flow', top:'심법 · 三', tag:'심법 03 · 구조', h:'자기 확신이 없으면<br>흐름은 여기서부터 어긋난다', hSize:92, steps:[{k:'원인',t:'자기 확신의 부재',d:'상대방이 나보다 훨씬 매력적이라고 느끼면서 위축된다.'},{k:'1차 영향',t:'상황 해석의 왜곡',d:'중립적인 반응도 거절로 받아들이고, 작은 호의에는 과한 의미를 붙인다.'},{k:'2차 영향',t:'행동의 변화',d:'과하게 잘 보이려 하거나, 필요 이상으로 소극적으로 움직인다.',red:true},{k:'결과',t:'관계의 흐름에 악영향',d:'자연스럽게 생겼을 호감과 다음 단계를, 스스로 줄인다.',red:true}], concl:'흔들린 건 마음 하나인데, 무너지는 건 흐름 전체다' },
  { type:'img', img:'s15_hand_glass.jpg', align:'center', top:'체크인 02', tag:'질문 회수 · 3분', h:'“ 셋 중 뭐가 제일 안 되나? ”', hSize:90, options:[{t:'주인 의식',d:'흐름보다 내 팟만 챙긴다'},{t:'팀 우선',d:'내가 돋보이려고 한다'},{t:'자기 확신',d:'반응 하나에 흔들린다'}], concl:'제일 많이 나온 하나를 오늘 실습에서 각자 목표로 잡는다' },
  { type:'img', img:'t_go.jpg', align:'left', pos:'60% 50%', flt:'saturate(0.6) contrast(1.08) brightness(0.72)', top:'第二論', tag:'1주차 · 파트', kicker:'POINT 02', h:'수읽기', hSize:240, sub:'권력·텐션·의미를 보면 다음 한 수가 보인다' },
  { type:'axes', top:'수읽기', tag:'수읽기', h:'흐름을 읽을 때는<br>세 가지만 보면 된다', hSize:92, center:'흐름', vertices:[{t:'권력',d:'누가 이 자리에서 주도권을 갖고 있나'},{t:'텐션',d:'감정의 높낮이가 있느냐'},{t:'의미',d:'서로 이 자리를 뭐라고 생각하나'}], concl:'권력, 텐션, 의미. 이 세 축이 흐름의 방향을 정한다' },
  { type:'flow', top:'권력', tag:'수읽기', h:'권력이 여자 쪽으로 넘어갔을 때', hSize:95, steps:[{k:'01 · 관찰',t:'남자 둘만 애쓴다',d:'질문도 남자 쪽에서만 나옴 · 여자는 짧게 답하고 웃기만 함 · 이 자리에 별 의미를 못 느낌'},{k:'02 · 판단',t:'지금 여자가 내가 가치 있다고 생각하지 않는구나',d:'잘 보이려고 할수록 여자는 권력을 더 갖게 되고, 남자가 원하는 방향으로 흘러가지 않게 된다.',red:true},{k:'03 · 행동',t:'친구 프레임으로 전환한다',d:'어필을 멈추고 네 명이 같이 말할 주제로 돌린다.'}], concl:'여자 쪽으로 권력이 흐를 땐, 프레임을 이동시켜야 한다' },
  { type:'gauge', top:'텐션', tag:'수읽기', h:'감정이 살아 있어야<br>자리는 유지된다', hSize:96, zones:[{t:'무감정',d:'제일 의미가 없는 상태. 화장실 핑계로 빠지는 것도 여기서 나온다.'},{t:'몰입',d:'농담, 반박, 자기공개가 오간다. 감정의 높낮이가 생긴다.'},{t:'과열',d:'화가 나도 따지려고 남을 수 있다. 낮춰야 할 신호다.'}], concl:'무감정은 끝난 흐름이다. 감정이 있어야 자리가 유지된다' },
+  { type:'columns', top:'텐션', tag:'수읽기 · 구조', h:'감정은 높낮이가 있어야<br>자리가 움직인다', hSize:92, sub:'감정이 일정하다고 지루한 것도, 변동이 크다고 좋은 것도 아니다. 높낮이는 결과가 아니라 기회를 만든다.', cols:[{k:'첫째',t:'익숙해지면 안 느껴진다',d:'같은 자극이 반복되면 사람은 익숙해진다. 처음엔 재미있던 농담도 계속되면 새로움이 줄어든다.'},{k:'둘째',t:'다른 면이 드러난다',d:'농담만 하면 재미있는 사람으로 남는다. 분위기가 바뀌어야 진지함, 배려, 자신감, 가치관이 보인다.'},{k:'셋째',t:'자리의 의미가 바뀐다',d:'같이 노는 사람에서, 서로를 이성으로 알아가는 자리로 넘어갈 여지가 생긴다.',red:true}], concl:'높낮이가 관계를 만드는 게 아니라, 의미가 달라질 기회를 만든다' },
  { type:'img', img:'s22_two_backs.jpg', align:'center', top:'체크인 03', tag:'질문 회수 · 3분', h:'“ 최근 그 자리, 어느 상태였나? ”', hSize:90, options:[{t:'무감정',d:'웃긴 웃는데 아무것도 안 움직였다'},{t:'몰입',d:'농담과 반박이 오갔다'},{t:'과열',d:'분위기가 날카로워졌다'}], concl:'무감정에 제일 많이 손이 올라간다. 문제는 거기서 뭘 하느냐다' },
  { type:'fan', top:'중반 도구', tag:'수읽기', h:'술게임은 목적이 아니라<br>메이드를 진행하기 위한 도구다', hSize:88, source:'술게임', items:[{t:'텐션 환기',d:'루즈해진 자리에 리듬을 다시 만든다.'},{t:'말거리 만들기',d:'지목과 이유 설명으로 대화 소재가 생긴다.'},{t:'호감의 방향',d:'누가 누구에게 반응하는지 자연스럽게 드러난다.'},{t:'팀 구도',d:'나와 내 팟, 윙과 윙 팟이 자연스럽게 한 편이 된다.'}], concl:'술을 먹이기 위해서가 아니라, 감정과 리액션을 만들기 위해서다' },
  { type:'flow', top:'게임 타이밍', tag:'수읽기', h:'게임에 들어가도 되는 타이밍', steps:[{k:'01 · 조건',t:'최소한의 호감',d:'여자 둘 다 자리에 남아 있고, 질문이 오가거나 웃고 받아치는 장면이 있다.'},{k:'02 · 금지',t:'무감정 상태에서 꺼내지 않는다',d:'아무 감정도 없는데 게임을 꺼내면 재미가 아니라 부담이 된다.',red:true},{k:'03 · 사용',t:'루즈해지기 전에 리듬을 바꾼다',d:'한쪽이 빠지면 먼저 다시 끌어오고, 네 명이 같이 할 수 있을 때 들어간다.'}], concl:'게임은 죽은 흐름을 살리는 주문이 아니다. 살아 있는 흐름의 리듬을 바꾸는 도구다' },
@@ -322,6 +360,8 @@ const S = [
  { type:'img', img:'s27_tilted_glass.jpg', align:'left', top:'第三論', tag:'1주차 · 파트', kicker:'POINT 03', h:'78수', hSize:240, sub:'관계와 자리의 의미를 다시 정의한다' },
  { type:'flow', top:'78수', tag:'78수', h:'친구로 풀 것인가,<br>남녀 구도로 올릴 것인가', hSize:92, steps:[{k:'친구 모드',t:'부담을 낮춘다',d:'한쪽만 애쓰거나 한 명이 빠지면, 네 명이 같이 웃을 수 있는 얘기로 돌아간다.'},{k:'반응 체크',t:'서로 반응하는지 본다',d:'질문, 농담, 자기 얘기가 양쪽에서 나오는지 본다.'},{k:'남녀 구도',t:'남녀 구도를 연다',d:'호감이나 남녀 차이를 가볍게 꺼낸다. 반응이 엇갈리면 바로 낮춘다.',red:true}], concl:'프레임 컨트롤은 같은 흐름을 보게 만드는 일이다' },
  { type:'versus', top:'78수', tag:'78수 · 구도', h:'왜 친구 구도부터 가는가', hSize:100, sub:'구도를 정한다는 건, 상대가 이 자리에 어떤 마음으로 앉아 있게 할지를 정하는 일이다', left:{k:'연인 구도부터 열면', t:'상대가 마스크를 쓴다', d:'호감 신호는 부담이 된다. 불쾌해지거나, 웃는 얼굴만 남겨두고 속으로는 언제 자리를 뜰지 계산하기 시작한다.'}, right:{k:'친구 구도부터 열면', t:'상대가 편해진다', d:'부담 없는 선에서 즐거우니 상대도 나도 편하다. 편해진 자리에서 속 이야기와 단서가 나온다.'}, concl:'거기서 얻은 단서로 남녀 대화로 엮거나, 내 이야기를 꺼낼 자리를 만든다' },
+  { type:'ladder', top:'78수', tag:'78수 · 구도', h:'잘 보이려 할수록<br>내가 할 수 있는 행동은 줄어든다', hSize:76, rowTop:330, sub:'같은 상황, 같은 상대. 갈리는 건 자기 확신 하나다.', left:{k:'자기 확신이 없을 때', rows:[{t:'잘 보여야 한다',hi:true},{t:'여자 중심 사고',d:'상대의 평가에 매달린다'},{t:'자기 검열이 늘어난다',d:'눈치 · 불안 · 소극적인 행동'},{t:'행동의 자유가 줄어든다',d:'주도권이 상대 쪽으로 기운다',hi:true}]}, right:{k:'자기 확신이 있을 때', rows:[{t:'서로 알아가는 자리',hi:true},{t:'친구 프레임',d:'평가의 부담을 먼저 내려놓는다'},{t:'행동이 자연스러워진다',d:'표현 · 여유 · 장난'},{t:'행동의 자유가 커진다',d:'대등한 주도권을 가진다',hi:true}]}, concl:'자기 확신이 높아질수록 행동의 자유가 커진다' },
+  { type:'funnel', top:'78수', tag:'78수 · 구도', h:'친구 프레임은 포기가 아니라<br>판단할 자리를 여는 수다', hSize:78, rowTop:306, top1:{k:'심법',t:'자기 확신',d:'상대의 평가에 흔들리지 않는다'}, top2:{k:'프레임 전환',t:'친구처럼 편한 상태',d:'잘 보여야 한다는 압박을 내려놓는다'}, axes:[{t:'권력',d:'행동의 자유',s:'자연스러운 표현'},{t:'텐션',d:'감정의 변화',s:'흥미와 교감'},{t:'의미',d:'관계의 인식',s:'이성적 관심 확인'}], out:{t:'상황에 맞는 판단',d:'상대의 반응을 확인하고 다음 수를 고른다'}, concl:'편해져야 세 가지가 보이고, 보여야 다음 수를 고를 수 있다' },
  { type:'loop', top:'너스레', tag:'78수', h:'수위를 올리는 방식은 너스레다', hSize:97, items:[{t:'가볍게 시작',d:'처음부터 노골적으로 꺼내지 않는다.'},{t:'장난처럼',d:'정색하고 밀지 말고 웃기면서 연다.'},{t:'반응 확인',d:'웃음·질문·받아침이 나오는지 본다.'},{t:'바로 낮춤',d:'불편하거나 무감정이면 평범한 대화로 뺀다.'}], back:'불편해지면 여기서 다시 처음으로 돌아간다', concl:'수위는 한 번에 올리는 게 아니라, 반응을 보며 한 단계씩 올리는 것이다' },
  { type:'img', img:'s30_distance.jpg', align:'center', top:'체크인 04', tag:'질문 회수 · 3분', h:'“ 수위를 올리려다 식은 적 있나? ”', hSize:90, options:[{t:'정색하고 밀었다',d:'진지하게 꺼냈다가 분위기가 굳었다'},{t:'타이밍이 빨랐다',d:'아직 반응이 없는데 먼저 열었다'},{t:'못 낮췄다',d:'불편해진 걸 보고도 계속 갔다'}], concl:'하나 고르고, 그때 어떻게 낮췄어야 했는지 한 문장으로 말한다' },
  { type:'img', img:'s31_four_stools.jpg', align:'left', top:'第四論', tag:'1주차 · 파트', kicker:'POINT 04', h:'협공', hSize:240, sub:'전위는 길을 열고, 후위는 대열을 지킨다' },
