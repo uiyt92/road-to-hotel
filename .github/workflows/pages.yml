@@ -41,7 +41,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p work/design-canvas/fonts && cd work/design-canvas/fonts
-          base=https://github.com/google/fonts/raw/main/ofl
+          base=https://raw.githubusercontent.com/google/fonts/main/ofl
           curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o EastSeaDokdo.ttf "$base/eastseadokdo/EastSeaDokdo-Regular.ttf"
           curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o NotoSansKR.ttf   "$base/notosanskr/NotoSansKR%5Bwght%5D.ttf"
           curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o NotoSerifKR.ttf  "$base/notoserifkr/NotoSerifKR%5Bwght%5D.ttf"
