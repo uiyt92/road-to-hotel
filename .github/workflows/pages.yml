@@ -42,9 +42,9 @@ jobs:
           set -euo pipefail
           mkdir -p work/design-canvas/fonts && cd work/design-canvas/fonts
           base=https://github.com/google/fonts/raw/main/ofl
-          curl -fsSL -o EastSeaDokdo.ttf "$base/eastseadokdo/EastSeaDokdo-Regular.ttf"
-          curl -fsSL -o NotoSansKR.ttf   "$base/notosanskr/NotoSansKR%5Bwght%5D.ttf"
-          curl -fsSL -o NotoSerifKR.ttf  "$base/notoserifkr/NotoSerifKR%5Bwght%5D.ttf"
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o EastSeaDokdo.ttf "$base/eastseadokdo/EastSeaDokdo-Regular.ttf"
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o NotoSansKR.ttf   "$base/notosanskr/NotoSansKR%5Bwght%5D.ttf"
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o NotoSerifKR.ttf  "$base/notoserifkr/NotoSerifKR%5Bwght%5D.ttf"
           ls -la *.ttf
 
       - name: 아트보드 생성
