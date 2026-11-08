@@ -67,13 +67,14 @@ body.wake .ui,.ui:focus-within{opacity:1}
 .nb{max-width:880px;margin:26px auto 0;background:#141311;padding:26px;font-size:18px;line-height:1.75;color:#e6dfd0}
 .hg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;max-width:900px;margin:26px auto 0}
 .hi{background:#141311;padding:17px}.hi b{color:#d9a441;font-size:17px}.hi span{display:block;color:#b9b2a3;margin-top:6px;font-size:13px}
+@media (prefers-reduced-motion: reduce){.slide,.bar{transition:none!important}}
 @media print{@page{size:1600px 900px;margin:0}html,body{overflow:visible;height:auto}#deck{position:static}.slide{position:relative;left:auto;top:auto;transform:none;opacity:1!important;page-break-after:always;break-after:page}.ui,.bar,.zone,.ov{display:none!important}}`;
 
 const js = `(function(){
 var S=[].slice.call(document.querySelectorAll('.slide')),i=0,N=S.length;
 var deck=document.getElementById('deck'),num=document.getElementById('num');
 function fit(){var k=Math.min(innerWidth/1600,innerHeight/900);deck.style.setProperty('--k',k)}
-function go(n,push){i=Math.max(0,Math.min(N-1,n));S.forEach(function(s,x){s.classList.toggle('on',x===i)});
+function go(n,push){i=Math.max(0,Math.min(N-1,n));S.forEach(function(s,x){s.classList.toggle('on',x===i);s.inert=x!==i});
   num.textContent=String(i+1).padStart(2,'0')+' / '+N;
   document.querySelector('.bar').style.setProperty('--p',((i+1)/N*100)+'%');
   if(push!==false)history.replaceState(null,'','#'+(i+1));
@@ -116,7 +117,7 @@ const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <body><main id="deck">${slides.join('')}</main>
 <button class="zone l" aria-label="이전"></button><button class="zone r" aria-label="다음"></button>
 <div class="bar"></div>
-<div class="ui"><button id="pv">←</button><button id="nx">→</button><span id="num">01 / ${TOTAL}</span><button id="bn">N</button><button id="bo">O</button><button id="bf">F</button><button id="bh">?</button></div>
+<div class="ui"><button id="pv" aria-label="이전 슬라이드">←</button><button id="nx" aria-label="다음 슬라이드">→</button><span id="num" aria-live="polite" aria-atomic="true">01 / ${TOTAL}</span><button id="bn" aria-label="발표자 노트">N</button><button id="bo" aria-label="전체 슬라이드">O</button><button id="bf" aria-label="전체 화면">F</button><button id="bh" aria-label="단축키 도움말">?</button></div>
 <aside id="notes" class="ov"><div class="ovh"><h2>발표자 노트</h2><button data-close>닫기 · Esc</button></div><div class="nb" id="nb"></div></aside>
 <div id="over" class="ov"><div class="ovh"><h2>${TOTAL}장 전체 보기</h2><button data-close>닫기 · Esc</button></div><div class="grid" id="grid"></div></div>
 <div id="help" class="ov"><div class="ovh"><h2>발표 단축키</h2><button data-close>닫기 · Esc</button></div><div class="hg">

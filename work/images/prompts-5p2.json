@@ -1,0 +1,14 @@
+{
+  "s_after_cafe": {
+    "note": "애프터 — 낮에 마주 앉은 두 사람, 아직 거리가 있다",
+    "prompt": "A quiet daytime cafe seen from across the room. A man and a woman sit facing each other at a small table by a window, both in coats, leaning back rather than forward, two cups between them. Neither looks at the camera. Winter light from the window, the rest of the room in shadow. Wide empty foreground."
+  },
+  "s_four_one_out": {
+    "note": "협공 — 넷이 앉았는데 한 명이 빠져 있다",
+    "prompt": "Four people around a small bar table at night, photographed from the side. Three of them lean in toward each other mid-conversation; the fourth sits slightly back, turned away, looking at nothing. All fully clothed in ordinary evening clothes. One warm lamp above the table, deep shadow everywhere else."
+  },
+  "s_road_walk": {
+    "note": "일단 가자 — 같이 걸어가는 뒷모습",
+    "prompt": "Four people walking away down a long empty road at night, photographed entirely from behind, small in the frame. One of them has stopped a few steps back while the others keep going. Street lamps spaced far apart, wet asphalt, everything beyond them dissolving into black."
+  }
+}
